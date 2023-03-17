@@ -14,6 +14,10 @@ public class Pessoa {
       this.idade = idade;
   }
 
+  public Pessoa(String nome) {
+    this.nome = nome;
+  }
+
   public Pessoa() {
   }
 
