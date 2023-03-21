@@ -1,5 +1,5 @@
 public class Estudante {
-  public String name;
+  private String name;
   private String endereco;
   private int matricula;
   private double nota_ap;
