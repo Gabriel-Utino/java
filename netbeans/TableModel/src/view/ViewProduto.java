@@ -4,6 +4,8 @@
  */
 package view;
 
+import model.ProdutoTableModel;
+
 /**
  *
  * @author gabri
@@ -13,8 +15,13 @@ public class ViewProduto extends javax.swing.JFrame {
     /**
      * Creates new form ViewProduto
      */
+    
+    ProdutoTableModel tableModel = new ProdutoTableModel();
+    
     public ViewProduto() {
         initComponents();
+        
+        jTProdutos.setModel(tableModel);
     }
 
     /**
