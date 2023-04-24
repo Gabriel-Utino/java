@@ -2,52 +2,47 @@
 package exercicioex1;
 
 public class Pessoa {
-    private String nome;
-    private double altura;
-    private double peso;
-    
+    public String name;
+    public double height;
+    public int weight;
     
     public Pessoa() {
     }
     
-    public Pessoa(String nome, double altura, double peso) {
-        this.nome = nome;
-        this.altura = altura;
-        this.peso = peso;
+    public Pessoa(String name, double height, int weight) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
     }
     
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
     
-
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        this.altura = altura;
+    public void setHeight(double height) {
+        this.height = height;
     }
     
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
     
+    public String getName () {
+        return name;
+    }
     
+    public double getHeight () {
+        return height;
+    }
     
+    public int getWeight () {
+        return weight;
+    }
     
     
     public void printPessoa() {
-        System.out.println("nome : " + nome + "\naltura : " + altura + "\npeso : " + peso);
+        System.out.println("Name :" + this.name + "\nHeight :" + this.height
+        + "\nWeight :" + this.weight);
     }
+    
 }
