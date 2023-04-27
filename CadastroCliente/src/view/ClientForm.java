@@ -9,6 +9,8 @@ import Client.Client;
  * @author gabriel.utino_uscson
  */
 public class ClientForm extends javax.swing.JFrame {
+    Client clients[] = new Client[30];
+    public static int id;
 
     /**
      * Creates new form ClientForm
@@ -208,6 +210,7 @@ public class ClientForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         //System.out.println("Name :"+nameText.getText()+"\nCPF :"+cpfText.getText()+"\nRG :"+rgText.getText()+"\nE-mail :"+emailText.getText()
         //                    +"\nEndereco :"+addressText.getText()+"\nNo. "+numberText.getText()+"\nCEP :"+cepText.getText());
+        
         String createName = nameText.getText();
         String createCpf = cpfText.getText();
         String createRg = rgText.getText();
@@ -215,15 +218,27 @@ public class ClientForm extends javax.swing.JFrame {
         String createAddress = addressText.getText();
         String createNumber = numberText.getText();
         String createcep = cepText.getText();
+        id++;
         
-        Client epicseven = new Client(createName,createCpf,createRg,createEmail,createAddress,createNumber,createcep);
+        clients[id-1] = new Client(id,createName,createCpf,createRg,createEmail,createAddress,createNumber,createcep);
+        System.out.println("Create");
+        System.out.println(clients[id-1].getName());
+        System.out.println(id);
         
-        epicseven.printClient();
-        
+        nameText.setText("");
+        cpfText.setText("");
+        rgText.setText("");
+        emailText.setText("");
+        addressText.setText("");
+        numberText.setText("");
+        cepText.setText("");
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
         // TODO add your handling code here:
+        for(int i = 0 ; i < id; i++) {
+            System.out.println(clients[i].getName());
+        }
     }//GEN-LAST:event_readBtnActionPerformed
 
     /**
