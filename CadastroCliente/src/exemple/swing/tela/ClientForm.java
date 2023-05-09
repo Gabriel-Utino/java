@@ -291,6 +291,11 @@ public class ClientForm extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        modeloClient.remover(selecionado);
+        
+        Client c = new Client(name.getText(), cpf.getText(), rg.getText(),email.getText(),address.getText(),bairro.getText(),cep.getText());
+        modeloClient.adicionar(c);
+        limparCampos();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
