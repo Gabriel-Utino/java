@@ -10,37 +10,29 @@ package Client;
  * @author gabriel.utino_uscson
  */
 public class Client {
-    private int id;
     private String name;
     private String cpf;
     private String rg;
     private String email;
     private String address;
-    private String number;
+    private String bairro;
     private String cep;
     
     public Client() {
     }
     
-    public Client(int id, String name, String cpf, String rg, String email, 
-            String address, String number, String cep) {
-        this.id = id;
+    public Client(String name, String cpf, String rg, String email, 
+            String address, String bairro, String cep) {
         this.name = name;
         this.cpf = cpf;
         this.rg = rg;
         this.email = email;
         this.address = address;
-        this.number = number;
+        this.bairro = bairro;
         this.cep = cep;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
+    
 
     public String getName() {
         return name;
@@ -82,12 +74,12 @@ public class Client {
         this.address = address;
     }
 
-    public String getNumber() {
-        return number;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setBairro(String number) {
+        this.bairro = bairro;
     }
 
     public String getCep() {
