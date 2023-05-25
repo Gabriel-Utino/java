@@ -6,12 +6,16 @@ package exemple.swing.tela;
 
 import Client.Client;
 import Client.ModeloClient;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author gabri
  */
 public class ClientForm extends javax.swing.JFrame {
+    private int idCount = 1;
+    private int nextId = -1;
     private Client selecionado = null;
     private ModeloClient modeloClient = new ModeloClient();
     
@@ -21,8 +25,8 @@ public class ClientForm extends javax.swing.JFrame {
     public ClientForm() {
         initComponents();
         
-        modeloClient.adicionar(new Client("Gabriel","64658","487685","gabriel.utino@uscsonline.com.br","São Paulo","Cerâmica","09530-210"));
-        modeloClient.adicionar(new Client("Ricardo","16358","325486","ricardo.utino@uscsonline.com.br","São Paulo","Santa Paula","09541-100"));
+        modeloClient.adicionar(new Client(0, "Gabriel","64658","487685","gabriel.utino@uscsonline.com.br","São Paulo","Cerâmica","09530-210"));
+        modeloClient.adicionar(new Client(1, "Ricardo","16358","325486","ricardo.utino@uscsonline.com.br","São Paulo","Santa Paula","09541-100"));
     }
 
     /**
@@ -42,13 +46,13 @@ public class ClientForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        name = new javax.swing.JTextField();
-        cpf = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        address = new javax.swing.JTextField();
-        rg = new javax.swing.JTextField();
-        bairro = new javax.swing.JTextField();
-        cep = new javax.swing.JTextField();
+        nameTxt = new javax.swing.JTextField();
+        cpfTxt = new javax.swing.JTextField();
+        emailTxt = new javax.swing.JTextField();
+        addressTxt = new javax.swing.JTextField();
+        rgTxt = new javax.swing.JTextField();
+        bairroTxt = new javax.swing.JTextField();
+        cepTxt = new javax.swing.JTextField();
         criateBtn = new javax.swing.JButton();
         readBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
@@ -76,19 +80,19 @@ public class ClientForm extends javax.swing.JFrame {
 
         jLabel8.setText("BAIRRO");
 
-        cpf.addActionListener(new java.awt.event.ActionListener() {
+        cpfTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpfActionPerformed(evt);
+                cpfTxtActionPerformed(evt);
             }
         });
 
-        bairro.addActionListener(new java.awt.event.ActionListener() {
+        bairroTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bairroActionPerformed(evt);
+                bairroTxtActionPerformed(evt);
             }
         });
 
-        criateBtn.setText("CRIATE");
+        criateBtn.setText("CREATE");
         criateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 criateBtnActionPerformed(evt);
@@ -146,7 +150,7 @@ public class ClientForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(criateBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,27 +165,27 @@ public class ClientForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cpf)
+                                    .addComponent(cpfTxt)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(rgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cep))
+                                    .addComponent(cepTxt))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(address)
+                                    .addComponent(addressTxt)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(bairroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                 .addContainerGap())
@@ -197,27 +201,27 @@ public class ClientForm extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
-                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bairroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cepTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(criateBtn)
@@ -232,25 +236,46 @@ public class ClientForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bairroActionPerformed
+    private void bairroTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bairroTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bairroActionPerformed
+    }//GEN-LAST:event_bairroTxtActionPerformed
 
     private void criateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criateBtnActionPerformed
         // TODO add your handling code here:
-        Client c = new Client(name.getText(), cpf.getText(), rg.getText(),email.getText(),address.getText(),bairro.getText(),cep.getText());
-        modeloClient.adicionar(c);
-        limparCampos();
+        if (
+                nameTxt.getText().isEmpty() ||
+                cpfTxt.getText().isEmpty() ||
+                rgTxt.getText().isEmpty() ||
+                emailTxt.getText().isEmpty() ||
+                addressTxt.getText().isEmpty() ||
+                bairroTxt.getText().isEmpty() ||
+                cepTxt.getText().isEmpty()
+            ) {
+            JOptionPane.showMessageDialog(ClientForm.this, "Por favor preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if(nextId == -1) {
+            idCount++;
+            Client c = new Client(idCount,nameTxt.getText(), cpfTxt.getText(), rgTxt.getText(),emailTxt.getText(),addressTxt.getText(),bairroTxt.getText(),cepTxt.getText());
+            modeloClient.adicionar(c);
+            limparCampos();
+        }else{
+            Client c = new Client(nextId,nameTxt.getText(), cpfTxt.getText(), rgTxt.getText(),emailTxt.getText(),addressTxt.getText(),bairroTxt.getText(),cepTxt.getText());
+            modeloClient.adicionar(c);
+            limparCampos();
+            nextId = -1;
+        }
     }//GEN-LAST:event_criateBtnActionPerformed
 
     private void limparCampos() {
-        name.setText("");
-        cpf.setText("");
-        rg.setText("");
-        email.setText("");
-        address.setText("");
-        bairro.setText("");
-        cep.setText("");
+        nameTxt.setText("");
+        cpfTxt.setText("");
+        rgTxt.setText("");
+        emailTxt.setText("");
+        addressTxt.setText("");
+        bairroTxt.setText("");
+        cepTxt.setText("");
         selecionado = null;
     }
     
@@ -259,18 +284,18 @@ public class ClientForm extends javax.swing.JFrame {
         Client c = modeloClient.getClient(tabela.getSelectedRow());
         
         
-        name.setText(c.getName());
-        cpf.setText(c.getCpf());
-        rg.setText(c.getRg());
-        email.setText(c.getEmail());
-        address.setText(c.getAddress());
-        bairro.setText(c.getBairro());
-        cep.setText(c.getCep());
+        nameTxt.setText(c.getName());
+        cpfTxt.setText(c.getCpf());
+        rgTxt.setText(c.getRg());
+        emailTxt.setText(c.getEmail());
+        addressTxt.setText(c.getAddress());
+        bairroTxt.setText(c.getBairro());
+        cepTxt.setText(c.getCep());
     }//GEN-LAST:event_readBtnActionPerformed
 
-    private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
+    private void cpfTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpfActionPerformed
+    }//GEN-LAST:event_cpfTxtActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         // TODO add your handling code here:
@@ -280,7 +305,7 @@ public class ClientForm extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        modeloClient.remover(selecionado);
+        nextId = modeloClient.remover(selecionado);
         limparCampos();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -291,9 +316,23 @@ public class ClientForm extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        if (
+                nameTxt.getText().isEmpty() ||
+                cpfTxt.getText().isEmpty() ||
+                rgTxt.getText().isEmpty() ||
+                emailTxt.getText().isEmpty() ||
+                addressTxt.getText().isEmpty() ||
+                bairroTxt.getText().isEmpty() ||
+                cepTxt.getText().isEmpty()
+            ) {
+            JOptionPane.showMessageDialog(ClientForm.this, "Por favor preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int sameId = selecionado.getId();
         modeloClient.remover(selecionado);
         
-        Client c = new Client(name.getText(), cpf.getText(), rg.getText(),email.getText(),address.getText(),bairro.getText(),cep.getText());
+        Client c = new Client(sameId, nameTxt.getText(), cpfTxt.getText(), rgTxt.getText(),emailTxt.getText(),addressTxt.getText(),bairroTxt.getText(),cepTxt.getText());
         modeloClient.adicionar(c);
         limparCampos();
     }//GEN-LAST:event_updateBtnActionPerformed
@@ -334,14 +373,14 @@ public class ClientForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField address;
-    private javax.swing.JTextField bairro;
-    private javax.swing.JTextField cep;
-    private javax.swing.JTextField cpf;
+    private javax.swing.JTextField addressTxt;
+    private javax.swing.JTextField bairroTxt;
+    private javax.swing.JTextField cepTxt;
+    private javax.swing.JTextField cpfTxt;
     private javax.swing.JButton criarBtn;
     private javax.swing.JButton criateBtn;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -351,9 +390,9 @@ public class ClientForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField name;
+    private javax.swing.JTextField nameTxt;
     private javax.swing.JButton readBtn;
-    private javax.swing.JTextField rg;
+    private javax.swing.JTextField rgTxt;
     private javax.swing.JTable tabela;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables

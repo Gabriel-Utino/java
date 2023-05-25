@@ -14,7 +14,7 @@ public class ModeloClient extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -22,19 +22,22 @@ public class ModeloClient extends AbstractTableModel {
         Client v = clients.get(rowIndex);
         switch(columnIndex) {
             case 0:
-                return v.getName();
+                return v.getId()+1;
             case 1:
-                return v.getCpf();
+                return v.getName();
             case 2:
-                return v.getRg();
+                return v.getCpf();
             case 3:
-                return v.getEmail();
+                return v.getRg();
             case 4:
-                return v.getAddress();
+                return v.getEmail();
             case 5:
-                return v.getBairro();
+                return v.getAddress();
             case 6:
+                return v.getBairro();
+            case 7:
                 return v.getCep();
+                
             default:
                 return "";
         }
@@ -47,18 +50,20 @@ public class ModeloClient extends AbstractTableModel {
     public String getColumnName(int coluna) {
         switch(coluna) {
             case 0:
-                return "Nome";
+                return "ID";
             case 1:
-                return "CPF";
+                return "Nome";
             case 2:
-                return "RG";
+                return "CPF";
             case 3:
-                return "Email";
+                return "RG";
             case 4:
-                return "Endereco";
+                return "Email";
             case 5:
-                return "Bairro.";
+                return "Endereco";
             case 6:
+                return "Bairro";
+            case 7:
                 return "CEP";
             default:
                 return "";
@@ -70,8 +75,15 @@ public class ModeloClient extends AbstractTableModel {
         fireTableRowsInserted(clients.size() - 1, clients.size() - 1);
     }
     
-    public void remover(Client c) {
+    public int remover(Client c) {
+        int index = c.getId();
         clients.remove(c);
         fireTableRowsInserted(clients.size() - 1, clients.size() - 1);
+        return index;
+    }
+    
+    public int countList() {
+        int size = clients.size();
+        return size;
     }
 }
