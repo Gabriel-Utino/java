@@ -6,6 +6,8 @@ package exemple.swing.tela;
 
 import Client.Client;
 import Client.ModeloClient;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 
@@ -14,6 +16,8 @@ import javax.swing.table.TableRowSorter;
  * @author gabri
  */
 public class ClientForm extends javax.swing.JFrame {
+    private TableRowSorter<ModeloClient> sorter;
+    
     private int idCount = 1;
     private int nextId = -1;
     private Client selecionado = null;
@@ -25,8 +29,21 @@ public class ClientForm extends javax.swing.JFrame {
     public ClientForm() {
         initComponents();
         
+        sorter = new TableRowSorter<>(modeloClient);
+        tabela.setRowSorter(sorter);
+        
         modeloClient.adicionar(new Client(0, "Gabriel","64658","487685","gabriel.utino@uscsonline.com.br","São Paulo","Cerâmica","09530-210"));
         modeloClient.adicionar(new Client(1, "Ricardo","16358","325486","ricardo.utino@uscsonline.com.br","São Paulo","Santa Paula","09541-100"));
+    
+        
+        
+        tabela.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            int columnIndex = tabela.columnAtPoint(e.getPoint());
+            sorter.toggleSortOrder(columnIndex);
+        }
+        });
     }
 
     /**
