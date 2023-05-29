@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class ClientForm extends javax.swing.JFrame {
     private TableRowSorter<ModeloClient> sorter;
     
-    private int idCount = 1;
+    private int idCount = 3;
     private int nextId = -1;
     private Client selecionado = null;
     private ModeloClient modeloClient = new ModeloClient();
@@ -34,6 +34,8 @@ public class ClientForm extends javax.swing.JFrame {
         
         modeloClient.adicionar(new Client(0, "Gabriel","64658","487685","gabriel.utino@uscsonline.com.br","São Paulo","Cerâmica","09530-210"));
         modeloClient.adicionar(new Client(1, "Ricardo","16358","325486","ricardo.utino@uscsonline.com.br","São Paulo","Santa Paula","09541-100"));
+        modeloClient.adicionar(new Client(2, "Sena","84352","798322","sena.tsukishima@uscsonline.com.br","São Paulo","Santa Paula","09530-210"));
+        modeloClient.adicionar(new Client(3, "Nene","98435","987546","nene.shimizu@uscsonline.com.br","São Paulo","Santa Paula","09530-210"));
     
         
         
